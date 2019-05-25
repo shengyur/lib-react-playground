@@ -1,12 +1,11 @@
-import {CHANGE_INPUT_VALUE,ADD_TODO_ITEM,DELETE_TODO_ITEM} from './actionTypes.js'
+import {CHANGE_INPUT_VALUE,ADD_TODO_ITEM,DELETE_TODO_ITEM,INIT_LIST_ITEM} from './actionTypes.js'
 
 const defaultState = {
-    inputValue:'aaa',
-    list:[1,2]
+    inputValue:'',
+    list:[]
 }
 
 export default (state=defaultState,action)=>{
-    console.log("reducer",state,action)
     if(action.type === CHANGE_INPUT_VALUE){
         const newState = JSON.parse(JSON.stringify(state));
         newState.inputValue = action.value;
@@ -21,6 +20,12 @@ export default (state=defaultState,action)=>{
     if(action.type === DELETE_TODO_ITEM){
         const newState = JSON.parse(JSON.stringify(state));
         newState.list.splice(action.index,1);
+        return newState
+    }
+    if(action.type === INIT_LIST_ITEM){
+        const newState = JSON.parse(JSON.stringify(state));
+        newState.list = action.value;
+        console.log("action.val",newState.list)
         return newState
     }
     return state
