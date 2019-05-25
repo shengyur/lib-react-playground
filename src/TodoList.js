@@ -1,9 +1,8 @@
 import React,{Component}from 'react';
 import 'antd/dist/antd.css';
 import store from './store/store.js';
-import {getInputChangeAction,getAddItemAction,deleteItemAction,initListAction} from './store/actionCreators'
+import {getInputChangeAction,getAddItemAction,deleteItemAction,getTodoList} from './store/actionCreators'
 import TodoListUI from './TodoListUI.js';
-import axios from 'axios';
 
 class TodoList extends Component{
 
@@ -18,7 +17,6 @@ class TodoList extends Component{
 
 
     handelInputChange=(e)=>{
-        console.log(e.target.value)
         const action = getInputChangeAction(e.target.value);
         store.dispatch(action)
     }
@@ -36,12 +34,11 @@ class TodoList extends Component{
     }
 
     componentDidMount(){
-        axios.get('http://localhost:3737/list.json').then((res)=>{
-            const action = initListAction(res.data);
-            store.dispatch(action)
-            console.log(action);
-            console.log(this.state.list);
-        })
+        const action = getTodoList();
+        console.log(action);
+        // 把action发送给store时，函数会自动被执行
+        store.dispatch(action);
+        // 把异步操作放到action中，便于管理以及测试
     }
 
 
