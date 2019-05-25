@@ -25,7 +25,6 @@ export default (state=defaultState,action)=>{
     if(action.type === INIT_LIST_ITEM){
         const newState = JSON.parse(JSON.stringify(state));
         newState.list = action.value;
-        console.log("action.val",newState.list)
         return newState
     }
     return state
