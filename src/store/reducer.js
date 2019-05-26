@@ -1,31 +1,25 @@
-import {CHANGE_INPUT_VALUE,ADD_TODO_ITEM,DELETE_TODO_ITEM,INIT_LIST_ITEM} from './actionTypes.js'
-
-const defaultState = {
-    inputValue:'',
+const defaultState={
+    inputValue:"",
     list:[]
 }
 
-export default (state=defaultState,action)=>{
-    if(action.type === CHANGE_INPUT_VALUE){
-        const newState = JSON.parse(JSON.stringify(state));
-        newState.inputValue = action.value;
-        return newState
+export default (state = defaultState,action)=>{
+    let newState;
+    switch(action.type){
+        case 'change_input_value':
+            newState = JSON.parse(JSON.stringify(state));
+            newState.inputValue = action.value;
+            return newState;
+        case 'add_item':
+            newState = JSON.parse(JSON.stringify(state));
+            newState.list.push(newState.inputValue);
+            newState.inputValue = "";
+            return newState;
+        case 'remove_item':
+            newState = JSON.parse(JSON.stringify(state));
+            newState.list.splice(action.index,1);
+            return newState;
+        default:
+            return defaultState
     }
-    if(action.type === ADD_TODO_ITEM){
-        const newState = JSON.parse(JSON.stringify(state));
-        newState.list.push(newState.inputValue);
-        newState.inputValue = '';
-        return newState
-    }
-    if(action.type === DELETE_TODO_ITEM){
-        const newState = JSON.parse(JSON.stringify(state));
-        newState.list.splice(action.index,1);
-        return newState
-    }
-    if(action.type === INIT_LIST_ITEM){
-        const newState = JSON.parse(JSON.stringify(state));
-        newState.list = action.value;
-        return newState
-    }
-    return state
 }
