@@ -15,23 +15,10 @@ import {
   SearchBtn
 } from "./style";
 import { CSSTransition } from "react-transition-group";
-import { INPUT_FOCUSED, INPUT_NOT_FOCUSED } from "../../store/actionTypes";
 import { connect } from "react-redux";
+import {handleFocusAction,handleBlurAction} from "../../store/actionCreaters";
 
-class Header extends React.Component {
-  handleFocus = () => {
-    this.setState({
-      foused: true
-    });
-  };
-
-  handleBlur = () => {
-    this.setState({
-      foused: false
-    });
-  };
-
-  render() {
+function Header(props){
     return (
       <HeaderWrapper>
         <Logo />
@@ -58,17 +45,17 @@ class Header extends React.Component {
             <NavItem style={{ paddingLeft: "15px" }}>
               <SearchWrapper>
                 <CSSTransition
-                  in={this.props.foused}
+                  in={props.foused}
                   timeout={200}
                   classNames="slide-transition"
                 >
                   <SearchInput
-                    className={this.props.foused ? "focusIn" : ""}
-                    onFocus={this.handleFocus}
-                    onBlur={this.handleBlur}
+                    className={props.foused ? "focusIn" : ""}
+                    onFocus={props.handleFocus}
+                    onBlur={props.handleBlur}
                   />
                 </CSSTransition>
-                <SearchBtn className={this.props.foused ? "focusIn" : ""}>
+                <SearchBtn className={props.foused ? "focusIn" : ""}>
                   <i className="iconfont">&#xe62d;</i>
                 </SearchBtn>
               </SearchWrapper>
@@ -77,31 +64,24 @@ class Header extends React.Component {
         </div>
       </HeaderWrapper>
     );
-  }
 }
 
 const mapStateToProps = state => {
-  const defaultState = {
-    foused: false
-  };
-
-  return (state = defaultState, action) => {
-    switch (action.type) {
-      case INPUT_FOCUSED:
-        return Object.assign({}, state, {
-          foused: true
-        });
-      case INPUT_NOT_FOCUSED:
-        return Object.assigin({}, state, {
-          foused: false
-        });
-      default:
-        return state;
-    }
-  };
+  return {
+    foused:state.foused
+  }
 };
 
-const mapDispacthToProps = dispatch => {};
+const mapDispacthToProps = dispatch => {
+    return {
+        handleFocus:()=>{
+            dispatch(handleFocusAction())
+        },
+        handleBlur:()=>{
+            dispatch(handleBlurAction())
+        }
+    }
+};
 
 export default connect(
   mapStateToProps,

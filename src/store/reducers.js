@@ -11,7 +11,7 @@ export default (state = defaultState, action) => {
         foused: true
       });
     case INPUT_NOT_FOCUSED:
-      return Object.assigin({}, state, {
+      return Object.assign({}, state, {
         foused: false
       });
     default:

@@ -2,6 +2,8 @@ import React from "react";
 import { ResetStyle, GlobalStyle } from "./reset.css";
 import { IconStyle } from "./static/iconFonts/iconfont.css";
 import Header from "./common/header";
+import store from "./store"
+import {Provider} from 'react-redux';
 
 function App() {
   return (
@@ -9,7 +11,9 @@ function App() {
       <IconStyle />
       <ResetStyle />
       <GlobalStyle />
-      <Header />
+      <Provider store={store}>
+          <Header/>
+      </Provider>
     </div>
   );
 }
