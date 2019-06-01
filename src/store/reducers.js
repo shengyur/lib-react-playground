@@ -1,20 +1,8 @@
-import { INPUT_FOCUSED, INPUT_NOT_FOCUSED } from "./actionTypes";
+import {combineReducers} from 'redux-immutable';
+import headerReducer from '../common/header/store';
 
-const defaultState = {
-  foused: false
-};
+let reducer = combineReducers({
+    header:headerReducer
+})
 
-export default (state = defaultState, action) => {
-  switch (action.type) {
-    case INPUT_FOCUSED:
-      return Object.assign({}, state, {
-        foused: true
-      });
-    case INPUT_NOT_FOCUSED:
-      return Object.assign({}, state, {
-        foused: false
-      });
-    default:
-      return state;
-  }
-};
+export default reducer;

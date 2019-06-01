@@ -16,7 +16,8 @@ import {
 } from "./style";
 import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
-import {handleFocusAction,handleBlurAction} from "../../store/actionCreaters";
+import {handleFocusAction,handleBlurAction} from "./store/actionCreaters";
+
 
 function Header(props){
     return (
@@ -45,17 +46,17 @@ function Header(props){
             <NavItem style={{ paddingLeft: "15px" }}>
               <SearchWrapper>
                 <CSSTransition
-                  in={props.foused}
+                  in={props.focused}
                   timeout={200}
                   classNames="slide-transition"
                 >
                   <SearchInput
-                    className={props.foused ? "focusIn" : ""}
+                    className={props.focused ? "focusIn" : ""}
                     onFocus={props.handleFocus}
                     onBlur={props.handleBlur}
                   />
                 </CSSTransition>
-                <SearchBtn className={props.foused ? "focusIn" : ""}>
+                <SearchBtn className={props.focused ? "focusIn" : ""}>
                   <i className="iconfont">&#xe62d;</i>
                 </SearchBtn>
               </SearchWrapper>
@@ -68,7 +69,8 @@ function Header(props){
 
 const mapStateToProps = state => {
   return {
-    foused:state.foused
+    // focused:state.header.get("focused")
+    focused:state.getIn(['header','focused'])
   }
 };
 
