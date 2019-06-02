@@ -27,30 +27,30 @@ import * as actionCreaters from "./store/actionCreaters";
 
 
 class Header extends React.Component{
-    
 
     getListArea = (show)=>{
-        const {list,page} = this.props;
+        const {list,page,handleMouseIn,handleMouseLeave,handlePageChange,mouseIn,totalPage} = this.props;
         const showList = [];
-        for(let i=(page-1)*10;i<page*10;i++){
-            showList.push(list.toJS()[i])
+        if(list.toJS().length){
+            for(let i=(page-1)*10;i<page*10;i++){
+                if(list.toJS()[i]){
+                showList.push(<SearchInfoItem key={list.toJS()[i]}>{list.toJS()[i]}</SearchInfoItem>)   
+                }
+            }
         }
+        
 
-        if(show){
-            return <SearchInfo>
+        if(show||mouseIn){
+            return <SearchInfo onMouseEnter={handleMouseIn} onMouseLeave={handleMouseLeave}>
                 <SearchThrowBlock/>
                 <SearchInfoTitle>热门搜索
-                    <SearchInfoSwitch>
+                    <SearchInfoSwitch onClick={()=>handlePageChange(page,totalPage)}>
                         <i className="iconfont" style={{fontSize:"13px"}}>&#xe851;</i>换一批
                     </SearchInfoSwitch>
                 </SearchInfoTitle>
                 
                 <SearchInfoList>
-                    {
-                        showList.map((item)=>{
-                            return  <SearchInfoItem key={item}>{item}</SearchInfoItem>
-                        })
-                    }
+                    {showList}
                 </SearchInfoList>
             </SearchInfo>
         }else{
@@ -118,7 +118,9 @@ const mapStateToProps = state => {
     // focused:state.header.get("focused")
     focused:state.getIn(['header','focused']),
     list:state.getIn(['header','list']),
-    page:state.getIn(['header','page'])
+    page:state.getIn(['header','page']),
+    mouseIn:state.getIn(['header','mouseIn']),
+    totalPage:state.getIn(['header','totalPage']),
   }
 };
 
@@ -130,6 +132,19 @@ const mapDispacthToProps = dispatch => {
         },
         handleBlur:()=>{
             dispatch(actionCreaters.handleBlurAction())
+        },
+        handleMouseIn:()=>{
+            dispatch(actionCreaters.handleMouseEnter())
+        },
+        handleMouseLeave:()=>{
+            dispatch(actionCreaters.handleMouseLeave())
+        },
+        handlePageChange:(page,totalPage)=>{
+            if(page<totalPage){
+                dispatch(actionCreaters.changePage(page+1))                            
+            }else{
+                dispatch(actionCreaters.changePage(1))          
+            }
         }
     }
 };
