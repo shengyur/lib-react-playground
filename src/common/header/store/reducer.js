@@ -1,9 +1,12 @@
-import { INPUT_FOCUSED, INPUT_NOT_FOCUSED } from "./actionTypes";
+import { INPUT_FOCUSED, INPUT_NOT_FOCUSED,GET_HOT_LIST} from "./actionTypes";
 import {fromJS} from "immutable"
 
 //改成immutable类型的数据
 const defaultState = fromJS({
-  focused: false
+  focused: false,
+  list:[],
+  page:1,
+  totalPage:1
 });
 
 export default (state = defaultState, action) => {
@@ -13,6 +16,8 @@ export default (state = defaultState, action) => {
       return state.set('focused',true)
     case INPUT_NOT_FOCUSED:
       return state.set('focused',false)
+    case GET_HOT_LIST:
+      return state.set('list',action.data).set('totalPage',action.totalPage)
     default:
       return state;
   }

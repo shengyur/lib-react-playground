@@ -82,7 +82,7 @@ export const Nav = styled.ul`
   margin: 0 auto;
   height: 56px;
   line-height: 56px;
-  padding-left: 50px;
+  padding-left: 100px;
 `;
 
 export const NavItem = styled.li`
@@ -91,7 +91,7 @@ export const NavItem = styled.li`
   span {
     padding: 0 15px;
   }
-  a {
+  a.mainPage {
     color: #ea6f5a;
     width: 56px;
     height: 56px;
@@ -107,12 +107,12 @@ export const SearchWrapper = styled.form`
   top: -2px;
   /* This fires as soon as the element enters the DOM */
   .slide-transition-enter {
-    width: 160px;
+    width: 320px;
     transition: all 0.2s ease-out;
   }
   /* This is where we can add the transition*/
   .slide-transition-enter-active {
-    width: 240px;
+    width: 320px;
   }
   /* This fires as soon as the this.state.showList is false */
   .slide-transition-exit {
@@ -127,7 +127,7 @@ export const SearchInput = styled.input.attrs({
   placeholder: "搜索"
 })`
   padding: 0 40px 0 20px;
-  width: 160px;
+  width: 260px;
   height: 38px;
   font-size: 14px;
   border: 1px solid #eee;
@@ -136,7 +136,7 @@ export const SearchInput = styled.input.attrs({
   text-shadow: none;
   outline: none;
   &.focusIn {
-    width: 240px;
+    width: 320px;
   }
 `;
 
@@ -155,7 +155,7 @@ export const SearchBtn = styled.a.attrs({
   text-align: center;
 
   &.iconfont {
-    font-size: 18px;
+    font-size: 20px;
   }
   &.focusIn {
     color: #fff !important;
@@ -163,3 +163,52 @@ export const SearchBtn = styled.a.attrs({
     border-radius: 15px;
   }
 `;
+
+export const SearchInfo = styled.div`
+  position:absolute;
+  left:0;
+  top:56px;
+  width:250px;
+  padding:0 20px;
+  min-height:100px;    
+  box-shadow: 0 0 8px rgba(0,0,0,.2);
+`
+
+export const SearchInfoTitle = styled.div`
+  margin-top:20px;
+  margin-bottom:15px;
+  line-height:20px;
+  font-size:14px;
+  color:#969696;
+`
+
+export  const SearchInfoSwitch = styled.div`
+  float:right;
+  font-size:13px;
+`
+export  const SearchInfoItem = styled.a`
+  font-size:12px;
+  padding:0 5px;
+  line-height:20px;
+  border:1px solid #ddd;
+  color:#787878;
+  border-radius:2px;
+  display:block;
+  float:left;
+  margin-right:10px;
+  margin-bottom:14px;
+`
+export const SearchThrowBlock = styled.div`
+  width:10px;
+  height:10px;
+  transform:rotate(45deg);
+  -webkit:rotate(54deg);
+  position:absolute;
+  background-color:#fff;
+  top:-5px;
+`
+
+
+export  const SearchInfoList = styled.div`
+  overflow:hidden;
+`
