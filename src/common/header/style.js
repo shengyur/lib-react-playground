@@ -185,13 +185,14 @@ export const SearchInfoTitle = styled.div`
 export const SearchInfoSwitch = styled.div`
   float: right;
   font-size: 13px;
+  cursor:pointer;
   .iconfont {
     height: 13px;
     line-height: 13px;
     display: inline-block;
     transform: rotate(1deg);
     transform-origin: center center;
-    transition: all 0.8s ease-in-out;
+    transition: all 0.5s ease-in-out;
   }
 `;
 export const SearchInfoItem = styled.a`

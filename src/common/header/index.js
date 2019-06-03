@@ -90,8 +90,8 @@ class Header extends React.Component {
   };
 
   render() {
-    const { focused, handleFocus, handleBlur } = this.props;
-
+    const { focused, handleFocus, handleBlur,list } = this.props;
+console.log(list)
     return (
       <HeaderWrapper>
         <Logo />
@@ -128,7 +128,7 @@ class Header extends React.Component {
                 >
                   <SearchInput
                     className={focused ? "focusIn" : ""}
-                    onFocus={handleFocus}
+                    onFocus={()=>handleFocus(list)}
                     onBlur={handleBlur}
                   />
                 </CSSTransition>
@@ -158,8 +158,10 @@ const mapStateToProps = state => {
 
 const mapDispacthToProps = dispatch => {
   return {
-    handleFocus: () => {
-      dispatch(actionCreaters.getList());
+    handleFocus: (list) => {
+        if(list.size === 0){
+            dispatch(actionCreaters.getList());
+        }
       dispatch(actionCreaters.handleFocusAction());
     },
     handleBlur: () => {
@@ -173,7 +175,6 @@ const mapDispacthToProps = dispatch => {
     },
     handlePageChange: (page, totalPage, spinDom) => {
       console.log(spinDom, spinDom.style.transform);
-      debugger;
       let remote = Number(spinDom.style.transform.match(/\d+/g)[0]);
       remote += 360;
       spinDom.style.transform = `rotate(${remote}deg)`;
