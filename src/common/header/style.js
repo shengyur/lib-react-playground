@@ -165,50 +165,57 @@ export const SearchBtn = styled.a.attrs({
 `;
 
 export const SearchInfo = styled.div`
-  position:absolute;
-  left:0;
-  top:56px;
-  width:250px;
-  padding:0 20px;
-  min-height:100px;    
-  box-shadow: 0 0 8px rgba(0,0,0,.2);
-`
+  position: absolute;
+  left: 0;
+  top: 56px;
+  width: 250px;
+  padding: 0 20px;
+  min-height: 100px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+`;
 
 export const SearchInfoTitle = styled.div`
-  margin-top:20px;
-  margin-bottom:15px;
-  line-height:20px;
-  font-size:14px;
-  color:#969696;
-`
+  margin-top: 20px;
+  margin-bottom: 15px;
+  line-height: 20px;
+  font-size: 14px;
+  color: #969696;
+`;
 
-export  const SearchInfoSwitch = styled.div`
-  float:right;
-  font-size:13px;
-`
-export  const SearchInfoItem = styled.a`
-  font-size:12px;
-  padding:0 5px;
-  line-height:20px;
-  border:1px solid #ddd;
-  color:#787878;
-  border-radius:2px;
-  display:block;
-  float:left;
-  margin-right:10px;
-  margin-bottom:14px;
-`
+export const SearchInfoSwitch = styled.div`
+  float: right;
+  font-size: 13px;
+  .iconfont {
+    height: 13px;
+    line-height: 13px;
+    display: inline-block;
+    transform: rotate(1deg);
+    transform-origin: center center;
+    transition: all 0.8s ease-in-out;
+  }
+`;
+export const SearchInfoItem = styled.a`
+  font-size: 12px;
+  padding: 0 5px;
+  line-height: 20px;
+  border: 1px solid #ddd;
+  color: #787878;
+  border-radius: 2px;
+  display: block;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 14px;
+`;
 export const SearchThrowBlock = styled.div`
-  width:10px;
-  height:10px;
-  transform:rotate(45deg);
-  -webkit:rotate(54deg);
-  position:absolute;
-  background-color:#fff;
-  top:-5px;
-`
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  -webkit: rotate(54deg);
+  position: absolute;
+  background-color: #fff;
+  top: -5px;
+`;
 
-
-export  const SearchInfoList = styled.div`
-  overflow:hidden;
-`
+export const SearchInfoList = styled.div`
+  overflow: hidden;
+`;
