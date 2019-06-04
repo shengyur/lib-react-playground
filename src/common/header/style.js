@@ -185,7 +185,7 @@ export const SearchInfoTitle = styled.div`
 export const SearchInfoSwitch = styled.div`
   float: right;
   font-size: 13px;
-  cursor:pointer;
+  cursor: pointer;
   .iconfont {
     height: 13px;
     line-height: 13px;
