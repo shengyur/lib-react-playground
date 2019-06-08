@@ -21,7 +21,6 @@ export const ContentLeft = styled.article`
 `;
 
 export const ContentRight = styled.article`
-  background-color: blue;
   width: 30%;
   float: right;
 `;
