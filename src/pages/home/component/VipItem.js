@@ -1,35 +1,34 @@
 import React from "react";
 import { ItemImg } from "../style";
+import {connect} from "react-redux";
 
-export default class VipItem extends React.Component {
+class VipItem extends React.Component {
   render() {
+    const {recommentList} = this.props;
     return (
       <div>
-        <a href="/">
-          <ItemImg
-            src="https://cdn2.jianshu.io/assets/web/banner-s-club-aa8bdf19f8cf729a759da42e4a96f366.png"
-            alt="Banner s club"
-          />
-        </a>
-        <a href="/">
-          <ItemImg
-            src="https://cdn2.jianshu.io/assets/web/banner-s-7-1a0222c91694a1f38e610be4bf9669be.png"
-            alt="Banner s club"
-          />
-        </a>
-        <a href="/">
-          <ItemImg
-            src="https://cdn2.jianshu.io/assets/web/banner-s-5-4ba25cf5041931a0ed2062828b4064cb.png"
-            alt="Banner s club"
-          />
-        </a>
-        <a href="/">
-          <ItemImg
-            src="https://cdn2.jianshu.io/assets/web/banner-s-6-c4d6335bfd688f2ca1115b42b04c28a7.png"
-            alt="Banner s club"
-          />
-        </a>
-      </div>
+          {
+              recommentList.map((item)=>{
+                    return (
+                        <a href="/" key={item.get('id')}>
+                            <ItemImg
+                                src={item.get("imgUrl")}
+                                alt="Banner s club"
+                            /> 
+                        </a>
+                    )
+              })
+          }
+        
+    </div>
     );
   }
 }
+
+const mapStateToProps = (state)=>{
+    return {
+        recommentList:state.get('home').get('recommentList')
+    }
+}
+
+export default connect(mapStateToProps,null)(VipItem)

@@ -17,7 +17,7 @@ class List extends React.Component {
           {list.map(item => {
             return (
               <ListItem key={item.get("id")}>
-                <img src={item.get("imgUrl")} />
+                <img src={item.get("imgUrl")} alt="文章图片" />
                 <div style={{ paddingRight: "165px" }}>
                   <ListTitle className="title" target="_blank">
                     {item.get("title")}
@@ -36,7 +36,7 @@ class List extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    list: state.get("home").get("list")
+    list: state.get("home").get("homeList")
   };
 };
 

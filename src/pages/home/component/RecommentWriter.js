@@ -7,9 +7,11 @@ import {
   WriterListItem,
   ItemPic
 } from "../style";
+import {connect} from "react-redux";
 
-export default class RecommentWriter extends React.Component {
+class RecommentWriter extends React.Component {
   render() {
+      const {writerList} = this.props;
     return (
       <RecommendWrapper>
         <RecommendTitle>
@@ -30,23 +32,34 @@ export default class RecommentWriter extends React.Component {
           </SearchInfoSwitch>
         </RecommendTitle>
         <WriterList>
-          <WriterListItem>
-            <ItemPic>
-              <img
-                src="https://upload.jianshu.io/users/upload_avatars/4790772/388e473c-fe2f-40e0-9301-e357ae8f1b41.jpeg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp"
-                alt=""
-              />
-            </ItemPic>
-            <a href="/" className="focusIn">
-              <i>+</i>关注
-            </a>
-            <a href="/" className="story">
-              茶点故事
-            </a>
-            <p className="likeNum">写了356.5k字 · 10.5k喜欢</p>
-          </WriterListItem>
-        </WriterList>
+        {
+            writerList.map((item)=>{
+                return (<WriterListItem key={item.get("id")}>
+                        <ItemPic>
+                        <img
+                            src={item.get("avatar_source")}
+                            alt="作者头像"
+                        />
+                        </ItemPic>
+                        <a href="/" className="focusIn">
+                        <i>+</i>关注
+                        </a>
+                        <a href="/" className="story">
+                        {item.get("nickname")}
+                        </a>
+                        <p className="likeNum">写了{item.get("total_wordage")}字 · {item.get("total_likes_count")}喜欢</p>
+                    </WriterListItem>)
+            })
+        }
+          </WriterList>
       </RecommendWrapper>
     );
   }
 }
+
+const mapStateToProps = (state)=>{
+    return {
+        writerList:state.getIn(['home','recommentWriterList'])
+    }
+}
+export default connect(mapStateToProps,null)(RecommentWriter)

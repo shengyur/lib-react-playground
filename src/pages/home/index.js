@@ -8,8 +8,15 @@ import {
   ContentRight,
   BannerPic
 } from "./style.js";
+import {connect} from 'react-redux';
+import {actionCreaters} from './store';
 
-export default class Detail extends React.Component {
+class Home extends React.Component {
+
+    componentDidMount(){
+        this.props.changeHomeData()
+    }
+
   render() {
     return (
       <ContentWrapper>
@@ -25,3 +32,12 @@ export default class Detail extends React.Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch)=>({
+    changeHomeData(){
+        const action = actionCreaters.getHomeInfo();    
+        dispatch(action)    
+    }
+})
+
+export default connect(null,mapDispatchToProps)(Home)
