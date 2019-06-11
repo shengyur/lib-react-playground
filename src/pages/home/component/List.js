@@ -7,10 +7,12 @@ import {
   ListWrapper
 } from "../style";
 import { connect } from "react-redux";
+import * as actionTypes from "../store/actionTypes";
+import {actionCreaters} from "../store"
 
 class List extends React.Component {
   render() {
-    const { list } = this.props;
+    const { list,loadMore } = this.props;
     return (
       <ListWrapper>
         <ul>
@@ -28,7 +30,7 @@ class List extends React.Component {
             );
           })}
         </ul>
-        <ReadMore>阅读更多</ReadMore>
+        <ReadMore onClick={loadMore}>阅读更多</ReadMore>
       </ListWrapper>
     );
   }
@@ -40,7 +42,15 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = (dispatch)=>({
+    loadMore:()=>{
+        console.log(actionTypes.loadMoreList)
+        const action = actionCreaters.loadMoreInfo();
+        dispatch(action)
+    }
+})
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(List);

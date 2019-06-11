@@ -36,7 +36,7 @@ class Home extends React.Component {
 const mapDispatchToProps = (dispatch)=>({
     changeHomeData(){
         const action = actionCreaters.getHomeInfo();    
-        dispatch(action)    
+        dispatch(action) 
     }
 })
 
