@@ -18,9 +18,11 @@ export default (state = defaultState, action) => {
         recommentWriterList:fromJS(action.recommentWriterList)
         })
     case actionTypes.loadMoreList:
-        let gethomelist = state.get('homeList');
-        let morelist = gethomelist.concat(fromJS(action.morelist));
-        return state.set("homeList",morelist)
+        let morelist = state.get('homeList').concat(fromJS(action.morelist));
+        return state.merge({
+            homeList:morelist,
+            articlePage:action.nextPage
+        })
     default:
       return state;
   }

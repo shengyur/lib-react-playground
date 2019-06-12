@@ -30,7 +30,7 @@ export const ListWrapper = styled.div`
   margin-top: 30px;
 `;
 
-export const ListTitle = styled.h1`
+export const ListTitle = styled.h1`{
   margin: -7px 0 4px;
   display: inherit;
   font-size: 18px;

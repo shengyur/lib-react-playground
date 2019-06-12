@@ -8,9 +8,10 @@ const changeHomeData = (data)=>({
     recommentWriterList:data.data.recommentWriterList
 })
 
-const getMoreInfo = (data)=>({
+const getMoreInfo = (data,nextPage)=>({
     type:actionTypes.loadMoreList,
-    morelist:data.data.morelist
+    morelist:data.data.morelist,
+    nextPage
 })
 
 export const getHomeInfo = ()=>{
@@ -22,12 +23,12 @@ export const getHomeInfo = ()=>{
     }
 }
 
-export const loadMoreInfo = ()=>{
+export const loadMoreInfo = (page)=>{
     return (dispatch)=>{
-        axios.get('/api/loadmore.json').then((res)=>{
+        axios.get('/api/loadmore.json?page='+page).then((res)=>{
             const data = res.data;
             console.log(data)
-            dispatch(getMoreInfo(data));
+            dispatch(getMoreInfo(data,page+1));
         })
     }
 }
