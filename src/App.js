@@ -10,7 +10,7 @@ import Home from "./pages/home";
 
 function App() {
   return (
-    <div>
+    <React.Fragment>
       <IconStyle />
       <ResetStyle />
       <GlobalStyle />
@@ -21,7 +21,7 @@ function App() {
           <Route path="/detail" component={Detail} />
         </BrowserRouter>
       </Provider>
-    </div>
+    </React.Fragment>
   );
 }
 

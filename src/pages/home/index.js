@@ -2,6 +2,7 @@ import React from "react";
 import List from "./component/List";
 import VipItem from "./component/VipItem";
 import RecommentWriter from "./component/RecommentWriter";
+import SideTools from "../../common/sideTool";
 import {
   ContentWrapper,
   ContentLeft,
@@ -28,6 +29,7 @@ class Home extends React.Component {
           <VipItem />
           <RecommentWriter />
         </ContentRight>
+        <SideTools/>
       </ContentWrapper>
     );
   }
