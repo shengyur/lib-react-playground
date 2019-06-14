@@ -1,5 +1,7 @@
 import React from 'react';
 import {ToolsWrapper,BackToTop,ShareArticle} from './style';
+import { connect } from 'tls';
+import * as actionCreates from "./store/actionCreates";
 
 var backToTop = function (rate) {
     var doc = document.body.scrollTop? document.body : document.documentElement;
@@ -20,11 +22,17 @@ var backToTop = function (rate) {
     top();
 };
 
-export default class SideTools extends React.Component{
+class SideTools extends React.Component{
 
     componentDidMount(){
         window.addEventListener('scroll', function(e) {
-            // console.log(document.documentElement.scrollTop)
+            var doc = document.body.scrollTop? document.body : document.documentElement;
+            var scrollTop = doc.scrollTop;
+            // if(scrollTop > 200){
+            //     this.props.scrollToTop(true)
+            // }else{
+            //     this.props.scrollToTop(false)
+            // }
         })
     }
 
@@ -46,4 +54,21 @@ export default class SideTools extends React.Component{
             </ToolsWrapper>
         )
     }
-}
+};
+
+const mapStateToProps = (state)=>{
+    return {
+        showScrollToTop:state.get("scroll").get("showScrollToTop")
+    }
+};
+
+// const mapDispatchToProps = (dispatch)=>{
+//     return {
+//         scrollToTop:(showScroll)=>{
+//             const scrollToTop = actionCreates.handlePageScroll(showScroll);
+//             dispatch(scrollToTop)
+//         }
+//     }
+// };
+
+export default connect(mapStateToProps,null)(SideTools);
