@@ -1,0 +1,1 @@
+export const PAGE_SCROLL = 'page_scroll_change'
