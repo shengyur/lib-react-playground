@@ -2,7 +2,7 @@ import React from "react";
 import { ItemImg } from "../style";
 import {connect} from "react-redux";
 
-class VipItem extends React.Component {
+class VipItem extends React.PureComponent {
   render() {
     const {recommentList} = this.props;
     return (

@@ -24,7 +24,7 @@ import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 import * as actionCreaters from "./store/actionCreaters";
 
-class Header extends React.Component {
+class Header extends React.PureComponent {
   constructor(props) {
     super(props);
     this.spinEle = React.createRef();

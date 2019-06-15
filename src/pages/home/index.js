@@ -12,7 +12,7 @@ import {
 import {connect} from 'react-redux';
 import {actionCreaters} from './store';
 
-class Home extends React.Component {
+class Home extends React.PureComponent{
 
     componentDidMount(){
         this.props.changeHomeData()

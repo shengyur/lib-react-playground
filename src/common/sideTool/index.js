@@ -1,13 +1,13 @@
 import React from 'react';
 import {ToolsWrapper,BackToTop,ShareArticle} from './style';
-import { connect } from 'tls';
-import * as actionCreates from "./store/actionCreates";
+import { connect } from 'react-redux';
+import * as actionCreaters from './store/actionCreates';
 
-var backToTop = function (rate) {
-    var doc = document.body.scrollTop? document.body : document.documentElement;
-    var scrollTop = doc.scrollTop;
+let backToTop = function (rate) {
+    let doc = document.body.scrollTop? document.body : document.documentElement;
+    let scrollTop = doc.scrollTop;
     
-    var top = function () {
+    let top = function () {
         scrollTop = scrollTop + (0 - scrollTop) / (rate || 2);
         
         // 临界判断，终止动画
@@ -22,32 +22,33 @@ var backToTop = function (rate) {
     top();
 };
 
-class SideTools extends React.Component{
+class SideTools extends React.PureComponent{
 
     componentDidMount(){
-        window.addEventListener('scroll', function(e) {
-            var doc = document.body.scrollTop? document.body : document.documentElement;
-            var scrollTop = doc.scrollTop;
-            // if(scrollTop > 200){
-            //     this.props.scrollToTop(true)
-            // }else{
-            //     this.props.scrollToTop(false)
-            // }
+        this.bindScroll();
+    }
+
+    bindScroll(){
+        window.addEventListener("scroll",()=>{
+            this.props.changeScrollShow();
         })
     }
 
     handleScrollTop(){
-        // 滚动到顶部缓动实现
-        // rate表示缓动速率，默认是2
+        // 滚动到顶部缓动实现,rate表示缓动速率，默认是2
         backToTop(4)
     }
 
     render(){
         return (
             <ToolsWrapper>
-                <BackToTop onClick={this.handleScrollTop}>
-                <i className="iconfont">&#xe606;</i>
-                </BackToTop>
+                {
+                    this.props.showScroll ? 
+                    <BackToTop onClick={this.handleScrollTop}>
+                        <i className="iconfont">&#xe606;</i>
+                    </BackToTop>
+                    :""
+                }
                 <ShareArticle>
                     <i className="iconfont">&#xe64c;</i>
                 </ShareArticle>
@@ -56,19 +57,23 @@ class SideTools extends React.Component{
     }
 };
 
-const mapStateToProps = (state)=>{
+const mapStateToProps = (state)=>({
+    showScroll:state.get("showScroll").get("showScrollToTop")
+})
+
+const mapDispatchToProps = (dispatch)=>{
     return {
-        showScrollToTop:state.get("scroll").get("showScrollToTop")
+        changeScrollShow(){
+            let scrollTopLength = document.documentElement.scrollTop;
+            if(scrollTopLength > 400){
+                const action = actionCreaters.handlePageScroll(true)
+                dispatch(action)
+            }else{
+                const action = actionCreaters.handlePageScroll(false)
+                dispatch(action)
+            }
+        }
     }
-};
+}
 
-// const mapDispatchToProps = (dispatch)=>{
-//     return {
-//         scrollToTop:(showScroll)=>{
-//             const scrollToTop = actionCreates.handlePageScroll(showScroll);
-//             dispatch(scrollToTop)
-//         }
-//     }
-// };
-
-export default connect(mapStateToProps,null)(SideTools);
+export default connect(mapStateToProps,mapDispatchToProps)(SideTools);

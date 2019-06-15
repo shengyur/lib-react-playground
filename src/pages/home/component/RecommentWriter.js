@@ -9,7 +9,7 @@ import {
 } from "../style";
 import {connect} from "react-redux";
 
-class RecommentWriter extends React.Component {
+class RecommentWriter extends React.PureComponent {
   render() {
       const {writerList} = this.props;
     return (

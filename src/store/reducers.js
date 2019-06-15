@@ -6,7 +6,7 @@ import scrollReducer from "../common/sideTool/store/reducer";
 let reducer = combineReducers({
   header: headerReducer,
   home: homeReducer,
-  scroll:scrollReducer
-});
+  showScroll:scrollReducer
+})
 
 export default reducer;
