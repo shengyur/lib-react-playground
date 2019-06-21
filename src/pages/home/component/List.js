@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import {actionCreaters} from "../store";
 import {Link} from "react-router-dom";
 
-class List extends React.Component {
+class List extends React.PureComponent {
   render() {
     const { list,loadMore,page } = this.props;
     return (
