@@ -22,7 +22,9 @@ import {
 } from "./style";
 import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import * as actionCreaters from "./store/actionCreaters";
+import * as loginActionCreaters from "../../pages/login/store/actionCreaters";
 
 class Header extends React.PureComponent {
   constructor(props) {
@@ -80,7 +82,6 @@ class Header extends React.PureComponent {
               换一批
             </SearchInfoSwitch>
           </SearchInfoTitle>
-
           <SearchInfoList>{showList}</SearchInfoList>
         </SearchInfo>
       );
@@ -90,17 +91,23 @@ class Header extends React.PureComponent {
   };
 
   render() {
-    const { focused, handleFocus, handleBlur, list } = this.props;
+    const { focused, handleFocus, handleBlur, list,login,logOut} = this.props;
 
     return (
       <HeaderWrapper>
         <Logo />
-        <WriteNow className="btn">
-          <i className="iconfont">&#xe608;</i>
-          写文章
-        </WriteNow>
+            <WriteNow className="btn">
+                <Link to="/write">
+                    <i className="iconfont">&#xe608;</i>
+                    写文章
+                </Link>
+            </WriteNow>
         <Register className="btn">注册</Register>
-        <Login className="btn">登录</Login>
+        {
+            login? 
+            <Login className="btn" onClick={logOut}>退出</Login>: 
+            <Link to="/login"><Login className="btn">登录</Login></Link> 
+        }
         <Betablock>
           <Beta />
         </Betablock>
@@ -152,12 +159,16 @@ const mapStateToProps = state => {
     list: state.getIn(["header", "list"]),
     page: state.getIn(["header", "page"]),
     mouseIn: state.getIn(["header", "mouseIn"]),
-    totalPage: state.getIn(["header", "totalPage"])
+    totalPage: state.getIn(["header", "totalPage"]),
+    login:state.getIn(["login","isLogin"])
   };
 };
 
 const mapDispacthToProps = dispatch => {
   return {
+    logOut:()=>{
+        dispatch(loginActionCreaters.logOut())
+    },
     handleFocus: list => {
       if (list.size === 0) {
         dispatch(actionCreaters.getList());
@@ -177,7 +188,6 @@ const mapDispacthToProps = dispatch => {
       let remote = Number(spinDom.style.transform.match(/\d+/g)[0]);
       remote += 360;
       spinDom.style.transform = `rotate(${remote}deg)`;
-
       if (page < totalPage) {
         dispatch(actionCreaters.changePage(page + 1));
       } else {

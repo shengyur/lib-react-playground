@@ -46,7 +46,7 @@ export const Beta = styled.img.attrs({
   height: 25px;
 `;
 
-export const Login = styled.a`
+export const Login = styled.span`
   color: #969696;
   float: right;
   margin: 14px 6px 0 10px;
@@ -65,7 +65,7 @@ export const Register = styled.a`
   color: #ea6f5a;
   background-color: transparent;
 `;
-export const WriteNow = styled.a`
+export const WriteNow = styled.span`
   float: right;
   width: 100px;
   height: 40px;

@@ -18,7 +18,7 @@ class List extends React.PureComponent {
         <ul>
           {list.map((item,index) => {
             return (
-                <Link key={index} to="/detail">
+                <Link key={index} to={"/detail/"+item.get('id')}>
                     <ListItem>
                         <img src={item.get("imgUrl")} alt="文章图片" />
                         <div style={{ paddingRight: "165px" }}>
