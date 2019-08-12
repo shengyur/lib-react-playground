@@ -31,12 +31,3 @@
     transform: rotate(360deg);
   }
 }
-
-
-a.hovered{
-  color:orange
-}
-
-a.normal{
-  color:orangered
-}
