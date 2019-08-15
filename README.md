@@ -1,22 +1,17 @@
 # lib-react-playground
-该代码库用于管理 React 技术栈的多种实践，包括但不局限于 React 状态管理(Redux、React-Redux、Redux-thunk、Redux-sage)、React-Router、React 组件自动化测试、React原理分析等，React 服务端渲染/同构 请戳：https://github.com/shengyur/ssr_react
-
+该代码库用于管理 React 技术栈的多种实践，包括但不局限于 React 状态管理(Redux、React-Redux、Redux-thunk、Redux-sage)、React-Router、React 组件自动化测试、React原理分析等，React 服务端渲染/同构 请戳：[这里](https://github.com/shengyur/ssr_react)
 # 工程介绍
 使用 Create-React-APP 搭建，用于实践 React + Redux 应用
 ```javascript
-    本地开发：
-        npm i  / yarn
-        npm start
-    构建上线：
-        npm run build  /yarn run build
+    npm i  / yarn 
+    npm start
+    npm run build  /yarn run build
 ```
-https://github.com/shengyur/ssr_react
-
 # 分支介绍
 ## master分支: 使用redux和redux-thunk 构建 TodoList Demo
 
 <hr/>
-<img src="https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-Lc9KLBpJjn7KmBSCpDK%2F-LfjYtSjrck1P0Ix5SfT%2F-Lfj_DOVec9V5cFVbn46%2Fredux.png?alt=media&token=dffa6057-4fad-4b60-bb82-2d2a2777fa89" style="width:50%;margin:0 auto;" title="redux工作流">
+<img src="https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-Lc9KLBpJjn7KmBSCpDK%2F-LfjYtSjrck1P0Ix5SfT%2F-Lfj_DOVec9V5cFVbn46%2Fredux.png?alt=media&token=dffa6057-4fad-4b60-bb82-2d2a2777fa89" width="50%" title="redux工作流">
 <hr/>
 
 ### redux 工作流梳理：
@@ -133,7 +128,7 @@ export const getTodoList = ()=>{
 ## react-jianshu
  使用 React、Redux、React-Redux、Redux-thunk、Immutable.js 实现 [简书](https://www.jianshu.com/) 官网
  <hr/>
- <img src="https://raw.githubusercontent.com/shengyur/Images/master/img/jianshu.jpg" style="width:80%">
+ <img src="https://raw.githubusercontent.com/shengyur/Images/master/img/jianshu.jpg" width="60%">
  <hr/>
 
 实现功能：
