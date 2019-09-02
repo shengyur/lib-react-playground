@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import './App.css';
 import Usual from "./components/Ususl";
+import FuncContainer from './components/FuncContaner';
 
 
 function App() {
@@ -9,6 +9,8 @@ function App() {
     <div className="App">
       HOC:
       <Usual />
+      <hr />
+      <FuncContainer />
     </div >
   );
 }
