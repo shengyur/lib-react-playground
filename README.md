@@ -1,2 +1,1 @@
-# lib-react-playground
-lib-react-playground
+## GraphGL + Applo
